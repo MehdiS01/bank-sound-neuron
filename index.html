@@ -11,10 +11,10 @@
 
 <style>
 :root{
-  --bg:#fafafa;        /* paper-white */
-  --fg:#111;           /* ink */
-  --accent:#d82c34;    /* red hover */
-  --grid:#e0e0e0;      /* light grid for pattern */
+  --bg:#fafafa;
+  --fg:#111;
+  --accent:#d82c34;
+  --grid:#e0e0e0;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -35,26 +35,21 @@ body{
   justify-content:center;
   text-align:center;
   padding:4rem 1.2rem;
-
-  /* photo + voile sombre */
   background:
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)),
     url("hero-bg.jpg") center/cover no-repeat;
-  background-attachment:fixed;   /* léger effet parallax (desktop) */
+  background-attachment:fixed;
 }
-
-/* motif raster en surcouche */
+/* motif raster sur-imposé */
 .hero::after{
   content:"";
-  position:absolute; inset:0;
+  position:absolute;inset:0;
   background-image:
     repeating-linear-gradient(0deg ,transparent 0 18px,var(--grid) 18px 19px),
     repeating-linear-gradient(90deg,transparent 0  6px,var(--grid) 6px  7px);
   opacity:.35;
   pointer-events:none;
-  user-select:none;
 }
-
 .hero h1{
   font-family:"Playfair Display",serif;
   font-size:clamp(3rem,8vw,6rem);
@@ -62,19 +57,6 @@ body{
   letter-spacing:.02em;
   line-height:1.05;
   z-index:1;
-}
-
-/* vertical décoratif */
-.vertical{
-  position:absolute;
-  top:50%;left:0;
-  transform:translate(-40%, -50%) rotate(-90deg);
-  font-family:"Playfair Display",serif;
-  font-size:16vw;
-  font-weight:900;
-  color:#e5e5e5;
-  pointer-events:none;
-  user-select:none;
 }
 
 /* ---------- BUTTON ---------- */
@@ -88,13 +70,13 @@ body{
   letter-spacing:.05em;
   border-radius:5px;
   cursor:pointer;
-  transition:.25s background, .15s transform;
+  transition:.25s background,.15s transform;
   z-index:1;
 }
 .play-btn:hover{background:var(--accent)}
 .play-btn:active{transform:scale(.97)}
 
-/* ---------- CONTENT SECTION ---------- */
+/* ---------- CONTENT ---------- */
 .section{
   max-width:1250px;
   margin:4rem auto;
@@ -105,32 +87,52 @@ body{
 @media(min-width:900px){
   .section{grid-template-columns:1fr 1fr}
 }
-.block{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-}
+.block{display:flex;flex-direction:column;gap:1rem}
 .block h2{
   font-family:"Playfair Display",serif;
-  font-weight:700;
   font-size:clamp(1.8rem,4.5vw,2.4rem);
+  font-weight:700;
   margin-bottom:.5rem;
   letter-spacing:.03em;
 }
-.block p{max-width:60ch;}
-
-/* japonais légèrement décalé */
+.block p{max-width:60ch}
 .jp{
   opacity:.9;
   transform:translateX(4px);
-  font-size:0.95rem;
+  font-size:.95rem;
   line-height:1.7;
 }
 
-/* ---------- DARK-MODE ---------- */
+/* ---------- CREDITS ---------- */
+.credits{
+  background:var(--fg);
+  color:var(--bg);
+  text-align:center;
+  padding:3.5rem 1rem 4rem;
+}
+.credits h3{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(1.9rem,4.5vw,2.6rem);
+  font-weight:900;
+  margin-bottom:.3rem;
+}
+.credits .jp-name{
+  font-size:1.1rem;
+  letter-spacing:.1em;
+  margin-bottom:.8rem;
+}
+.credits p{margin-bottom:1.6rem;font-size:1rem}
+.credits .divider{
+  width:120px;height:2px;background:var(--bg);margin:2rem auto;
+}
+.credits .contact{font-size:1.15rem;font-weight:600;letter-spacing:.04em}
+
+/* ---------- DARK MODE ---------- */
 @media(prefers-color-scheme:dark){
   :root{--bg:#111;--fg:#f4f4f0;--grid:#222}
   .hero::after{opacity:.25}
+  .credits{background:var(--fg);color:#111}
+  .credits .divider{background:#111}
 }
 </style>
 </head>
@@ -139,36 +141,49 @@ body{
 
 <!-- HERO -->
 <section class="hero">
-  <div class="vertical" aria-hidden="true">SOUNDSCAPE</div>
   <h1>Soundscape&nbsp;of&nbsp;the&nbsp;Brain</h1>
   <button class="play-btn" id="playBtn">Play / Re-shuffle</button>
 </section>
 
-<!-- CONTENT -->
+<!-- MAIN CONTENT -->
 <section class="section">
-  <!-- Artistic block -->
   <div class="block">
     <h2>ARTISTIC&nbsp;INTENTION</h2>
     <p>Contrasting typical digital representations, this artwork captures deeply personal data on a tangible and unchanging medium. It invites sensitive contemplation of an emotional fragment—a true inner whisper emanating from the most complex machine of all: our brain.</p>
-    <p>Here, viewers are not merely observers; they become active participants, breathing life into this emotional score by randomly assigning sounds to the presented data. Each button press births a unique and ephemeral melody, though the rhythmic structure alone remains consistent across activations. This rhythmic constancy delicately inscribes the memory of a past emotion into the present moment, creating a continuously evolving sensory experience.</p>
+    <p>Viewers become active participants, breathing life into this emotional score by randomly assigning sounds to the data. Each button press births an ephemeral melody, while the rhythmic backbone remains fixed, delicately inscribing past emotion into the present moment.</p>
   </div>
   <div class="block jp">
     <h2>芸術的意図</h2>
-    <p>通常のデジタル表現とは異なり、この作品は深い内面性を映すデータを触れることのできる不変の媒体に刻み込んでいます。それは鑑賞者に、最も複雑な機械である脳から発せられる内なる囁きのような感情の断片を、感覚的に味わうことを促しています。</p>
-    <p>ここで鑑賞者は単なる受け手ではなく、自らが役者となり、提示されたデータにランダムに音を割り当てることで、この感情の楽譜に生命を吹き込む役割を果たします。ボタンを押すごとに唯一無二の刹那的なメロディが生まれますが、一定して変わらないのはリズム構造のみです。このリズムの永続性は、過去の感情の記憶を繊細に現在の瞬間へと刻み込み、絶え間なく変化し続ける感覚的な体験を作り出します。</p>
+    <p>この作品は深い内面性を映すデータを触れることのできる不変の媒体に刻み込みます。鑑賞者は提示されたデータにランダムに音を割り当て、感情の楽譜に生命を吹き込みます。ボタンを押すごとに一瞬のメロディが生まれ、リズム構造のみが恒常的に現在へ感情を刻み込みます。</p>
   </div>
 
-  <!-- Scientific block -->
   <div class="block">
     <h2>SCIENTIFIC&nbsp;ASPECT</h2>
-    <p>Our brain comprises approximately 100 billion neurons—more numerous than the stars in our galaxy. These neurons communicate through subtle ionic currents, exchanging information via electrical impulses — a true encoded language still being deciphered today.</p>
-    <p>Rendered in a binary-like raster, each horizontal line represents a neuron, each black dash an emitted spike. The recording shown here comes from the “nucleus accumbens,” often described as the seat of pleasure and motivation. Tens of seconds of activity capture a fragment of felt experience — an intimate instant, now immortalised on paper.</p>
+    <p>The brain hosts ~100 billion neurons that communicate via ionic currents—an encoded language scientists are still deciphering. Shown here as a binary-like raster, each row is a neuron, each dash a spike. The excerpt originates from the reward-related nucleus accumbens, capturing a fragment of lived emotion.</p>
   </div>
   <div class="block jp">
     <h2>科学的な側面</h2>
-    <p>私たちの脳は約1,000億個のニューロンから成り、その数は銀河系の星の数よりも多いと言われます。これらのニューロンは繊細なイオン電流によって情報をやり取りし、独自のコミュニケーションを行っています。この電気的インパルスは暗号化された言語のようなものです。</p>
-    <p>二進数的なラスター表示では、各行がニューロンを、各黒い線がスパイクを示します。この記録は快楽や動機付けに関わる「側坐核」から得られたものです。ここに捉えられた数十秒の活動は、個人的な感情の瞬間を紙に刻み、永遠のものとしています。</p>
+    <p>脳は約1,000億個のニューロンで構成され、イオン電流で情報を伝達します。各行がニューロン、各ダッシュがスパイクを示すラスター表示は、「側坐核」の活動を記録したものです。ここには体験された感情の断片が刻まれています。</p>
   </div>
+</section>
+
+<!-- CREDITS -->
+<section class="credits">
+  <h3>Mehdi Sicre</h3>
+  <div class="jp-name">メディ シクレ</div>
+  <p>Neuroscientist,<br>RIKEN Center for Brain Science</p>
+  <p class="jp">神経生物学者<br>理化学研究所 脳科学研究センター</p>
+
+  <div class="divider"></div>
+
+  <h3>Hiroshi Itami</h3>
+  <div class="jp-name">伊丹&nbsp;裕</div>
+  <p>Fine art printer</p>
+  <p class="jp">アート印刷技師</p>
+
+  <div class="divider"></div>
+
+  <div class="contact">Contact&nbsp;&nbsp;•&nbsp;&nbsp;sicremehdi@gmail.com</div>
 </section>
 
 <script>
