@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Joue un son aléatoire</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    button { padding: 10px 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>🎵 Joue un son aléatoire 🎵</h1>
+  <button onclick="playRandomSound()">Jouer</button>
+
+  <script>
+    const sounds = [
+      'https://TON_PSEUDO.github.io/NOM_DU_DEPOT/Neuronal_Sonification_InstrumentsAccordN04.wav',
+      'https://TON_PSEUDO.github.io/NOM_DU_DEPOT/Neuronal_Sonification_N01.wav',
+      'https://TON_PSEUDO.github.io/NOM_DU_DEPOT/Neuronal_Sonification_N02.wav',
+      'https://TON_PSEUDO.github.io/NOM_DU_DEPOT/Neuronal_Sonification_N03Whispers.wav',
+      'https://TON_PSEUDO.github.io/NOM_DU_DEPOT/Sonif_VentsDouceur.wav',
+      'https://TON_PSEUDO.github.io/NOM_DU_DEPOT/Sonification_Instrumentale.wav'
+    ];
+
+    function playRandomSound() {
+      const index = Math.floor(Math.random() * sounds.length);
+      const audio = new Audio(sounds[index]);
+      audio.play();
+    }
+  </script>
+</body>
+</html>
