@@ -4,15 +4,16 @@
   <meta charset="UTF-8">
   <title>Joue un son aléatoire</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    button { padding: 10px 20px; font-size: 18px; }
+    body{font-family:Arial,Helvetica,sans-serif;text-align:center;margin-top:60px}
+    button{padding:12px 26px;font-size:18px;border:1px solid #666;border-radius:6px;cursor:pointer}
   </style>
 </head>
 <body>
   <h1>🎵 Joue un son aléatoire 🎵</h1>
-  <button onclick="playRandomSound()">Jouer</button>
+  <button onclick="playRandom()">Jouer / Changer</button>
 
   <script>
+    // URLs des fichiers MP3 (remplace si nécessaire)
     const sounds = [
       'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_InstrumentsAccordN04.mp3',
       'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3',
@@ -22,19 +23,20 @@
       'https://mehdis01.github.io/bank-sound-neuron/Sonification_Instrumentale.mp3'
     ];
 
-    let currentAudio = null;
+    // On garde un seul lecteur audio pour toute la page
+    const audio = new Audio();
 
-    function playRandomSound() {
-      // Si un son est déjà en cours, arrête-le
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
+    function playRandom() {
+      // Arrêter le son en cours s’il joue
+      if (!audio.paused) {
+        audio.pause();
+        audio.currentTime = 0;
       }
 
-      // Sélectionne un nouveau son aléatoire
+      // Choisir un son différent au hasard
       const index = Math.floor(Math.random() * sounds.length);
-      currentAudio = new Audio(sounds[index]);
-      currentAudio.play();
+      audio.src = sounds[index];
+      audio.play();
     }
   </script>
 </body>
