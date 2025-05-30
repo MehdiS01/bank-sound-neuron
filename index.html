@@ -1,43 +1,134 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Joue un son aléatoire</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soundscape of the Brain</title>
+
+  <!-- Google Fonts: elegant serif for titles, clean sans-serif for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;text-align:center;margin-top:60px}
-    button{padding:12px 26px;font-size:18px;border:1px solid #666;border-radius:6px;cursor:pointer}
+    :root {
+      --bg: #f9f9f7;
+      --fg: #111111;
+      --accent: #d82c34;         /* red accent for hover */
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Inter", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    /* Oversized, elegant title */
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.7rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: 0.03em;
+      margin-bottom: 2rem;
+    }
+
+    /* Ghosted vertical text in background */
+    .vertical {
+      position: fixed;
+      top: 50%;
+      left: calc(50% - 46vw);
+      transform: translateY(-50%) rotate(-90deg);
+      font-family: "Playfair Display", serif;
+      font-size: 18vw;
+      font-weight: 700;
+      color: #e2e2de;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    p {
+      max-width: 45ch;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    button {
+      background: var(--fg);
+      color: var(--bg);
+      border: none;
+      padding: 0.9rem 2.4rem;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.15s;
+    }
+    button:hover   { background: var(--accent); }
+    button:active  { transform: scale(0.97); }
+
+    /* Optional dark-mode override */
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#111; --fg:#f4f4f0; }
+      body  { background: var(--bg); color: var(--fg); }
+      .vertical { color:#1c1c19; }
+    }
   </style>
 </head>
 <body>
-  <h1>🎵 Joue un son aléatoire 🎵</h1>
-  <button onclick="playRandom()">Jouer / Changer</button>
+  <!-- Decorative vertical text -->
+  <div class="vertical" aria-hidden="true">S O U N D S C A P E</div>
+
+  <!-- Main heading -->
+  <h1>Soundscape of the Brain</h1>
+
+  <!-- Short explanatory blurb -->
+  <p>
+    Each click rewires the score — neuronal spikes translated into sound.
+    Engage with a fleeting melody born from living data; no two listens are ever the same.
+  </p>
+
+  <!-- Interactive button -->
+  <button id="playBtn">Play&nbsp;/&nbsp;Re-shuffle</button>
 
   <script>
-    // URLs des fichiers MP3 (remplace si nécessaire)
+    /* Direct links to your MP3 files on GitHub */
     const sounds = [
-      'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_InstrumentsAccordN04.mp3',
-      'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3',
-      'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N02.mp3',
-      'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N03Whispers.mp3',
-      'https://mehdis01.github.io/bank-sound-neuron/Sonif_VentsDouceur.mp3',
-      'https://mehdis01.github.io/bank-sound-neuron/Sonification_Instrumentale.mp3'
+      "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_InstrumentsAccordN04.mp3",
+      "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3",
+      "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N02.mp3",
+      "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N03Whispers.mp3",
+      "https://mehdis01.github.io/bank-sound-neuron/Sonif_VentsDouceur.mp3",
+      "https://mehdis01.github.io/bank-sound-neuron/Sonification_Instrumentale.mp3"
     ];
 
-    // On garde un seul lecteur audio pour toute la page
+    /* Single persistent Audio object — avoids overlaps */
     const audio = new Audio();
 
     function playRandom() {
-      // Arrêter le son en cours s’il joue
+      /* Stop current playback, if any */
       if (!audio.paused) {
         audio.pause();
         audio.currentTime = 0;
       }
-
-      // Choisir un son différent au hasard
-      const index = Math.floor(Math.random() * sounds.length);
-      audio.src = sounds[index];
+      /* Pick a new random track */
+      const next = Math.floor(Math.random() * sounds.length);
+      audio.src = sounds[next];
       audio.play();
     }
+
+    document.getElementById("playBtn").addEventListener("click", playRandom);
   </script>
 </body>
 </html>
