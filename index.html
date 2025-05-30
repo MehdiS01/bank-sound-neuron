@@ -17,15 +17,24 @@
       'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_InstrumentsAccordN04.mp3',
       'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3',
       'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N02.mp3',
-      'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N03Whispers..mp3',
+      'https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N03Whispers.mp3',
       'https://mehdis01.github.io/bank-sound-neuron/Sonif_VentsDouceur.mp3',
       'https://mehdis01.github.io/bank-sound-neuron/Sonification_Instrumentale.mp3'
     ];
 
+    let currentAudio = null;
+
     function playRandomSound() {
+      // Si un son est déjà en cours, arrête-le
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      // Sélectionne un nouveau son aléatoire
       const index = Math.floor(Math.random() * sounds.length);
-      const audio = new Audio(sounds[index]);
-      audio.play();
+      currentAudio = new Audio(sounds[index]);
+      currentAudio.play();
     }
   </script>
 </body>
