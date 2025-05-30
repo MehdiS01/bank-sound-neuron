@@ -35,18 +35,26 @@ body{
   justify-content:center;
   text-align:center;
   padding:4rem 1.2rem;
+
+  /* photo + voile sombre */
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("hero-bg.jpg") center/cover no-repeat;
+  background-attachment:fixed;   /* léger effet parallax (desktop) */
 }
-.hero::before, .hero::after{
+
+/* motif raster en surcouche */
+.hero::after{
   content:"";
-  position:absolute;
-  inset:0;
+  position:absolute; inset:0;
   background-image:
     repeating-linear-gradient(0deg ,transparent 0 18px,var(--grid) 18px 19px),
     repeating-linear-gradient(90deg,transparent 0  6px,var(--grid) 6px  7px);
   opacity:.35;
-  filter:blur(1px);
   pointer-events:none;
+  user-select:none;
 }
+
 .hero h1{
   font-family:"Playfair Display",serif;
   font-size:clamp(3rem,8vw,6rem);
@@ -55,8 +63,9 @@ body{
   line-height:1.05;
   z-index:1;
 }
-/* vertical decorative label */
-.hero .vertical{
+
+/* vertical décoratif */
+.vertical{
   position:absolute;
   top:50%;left:0;
   transform:translate(-40%, -50%) rotate(-90deg);
@@ -110,7 +119,7 @@ body{
 }
 .block p{max-width:60ch;}
 
-/* subtle offset for JP text */
+/* japonais légèrement décalé */
 .jp{
   opacity:.9;
   transform:translateX(4px);
@@ -121,14 +130,14 @@ body{
 /* ---------- DARK-MODE ---------- */
 @media(prefers-color-scheme:dark){
   :root{--bg:#111;--fg:#f4f4f0;--grid:#222}
-  .hero::before,.hero::after{opacity:.2}
+  .hero::after{opacity:.25}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO with background raster & button -->
+<!-- HERO -->
 <section class="hero">
   <div class="vertical" aria-hidden="true">SOUNDSCAPE</div>
   <h1>Soundscape&nbsp;of&nbsp;the&nbsp;Brain</h1>
@@ -163,7 +172,7 @@ body{
 </section>
 
 <script>
-/* ------------ AUDIO PART ------------ */
+/* ------------ AUDIO ------------ */
 const sounds=[
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_InstrumentsAccordN04.mp3",
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3",
