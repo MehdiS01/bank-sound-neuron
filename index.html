@@ -11,9 +11,10 @@
 
 <style>
 :root{
+  /* Black & white palette */
   --bg:#fafafa;
   --fg:#111;
-  --accent:#d82c34;
+  --accent:#444;             /* subtle grey for hover */
   --grid:#e0e0e0;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -22,6 +23,7 @@ body{
   color:var(--fg);
   background:var(--bg);
   line-height:1.55;
+  -webkit-font-smoothing:antialiased;
 }
 
 /* ---------- HERO ---------- */
@@ -36,18 +38,19 @@ body{
   text-align:center;
   padding:4rem 1.2rem;
   background:
-    linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)),
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
     url("hero-bg.jpg") center/cover no-repeat;
   background-attachment:fixed;
+  filter:grayscale(1); /* force B&W */
 }
-/* motif raster sur-imposé */
+/* subtle raster motif */
 .hero::after{
   content:"";
   position:absolute;inset:0;
   background-image:
     repeating-linear-gradient(0deg ,transparent 0 18px,var(--grid) 18px 19px),
     repeating-linear-gradient(90deg,transparent 0  6px,var(--grid) 6px  7px);
-  opacity:.35;
+  opacity:.28;
   pointer-events:none;
 }
 .hero h1{
@@ -57,6 +60,7 @@ body{
   letter-spacing:.02em;
   line-height:1.05;
   z-index:1;
+  text-shadow:0 2px 4px rgba(0,0,0,.25);
 }
 
 /* ---------- BUTTON ---------- */
@@ -103,6 +107,21 @@ body{
   line-height:1.7;
 }
 
+/* ---------- RASTER IMAGE ---------- */
+.neuron-raster{
+  grid-column:1/-1; /* full width strip */
+  display:flex;
+  justify-content:center;
+}
+.neuron-raster img{
+  width:100%;
+  max-width:950px;
+  height:auto;
+  border-radius:8px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.10);
+  filter:grayscale(1); /* enforce B&W */
+}
+
 /* ---------- CREDITS ---------- */
 .credits{
   background:var(--fg);
@@ -129,10 +148,11 @@ body{
 
 /* ---------- DARK MODE ---------- */
 @media(prefers-color-scheme:dark){
-  :root{--bg:#111;--fg:#f4f4f0;--grid:#222}
-  .hero::after{opacity:.25}
+  :root{--bg:#111;--fg:#f4f4f0;--grid:#222;--accent:#888}
+  .hero::after{opacity:.22}
   .credits{background:var(--fg);color:#111}
   .credits .divider{background:#111}
+  .play-btn:hover{background:var(--accent)}
 }
 </style>
 </head>
@@ -165,6 +185,11 @@ body{
     <h2>科学的な側面</h2>
     <p>脳は約1,000億個のニューロンで構成され、イオン電流で情報を伝達します。各行がニューロン、各ダッシュがスパイクを示すラスター表示は、「側坐核」の活動を記録したものです。ここには体験された感情の断片が刻まれています。</p>
   </div>
+
+  <!-- FULL-WIDTH NEURON RASTER IMAGE -->
+  <figure class="neuron-raster">
+     <img src="NeuronRaster.jpg" alt="Raster plot of neuronal spikes" />
+  </figure>
 </section>
 
 <!-- CREDITS -->
@@ -196,8 +221,7 @@ const sounds=[
   "https://mehdis01.github.io/bank-sound-neuron/Sonif_VentsDouceur.mp3",
   "https://mehdis01.github.io/bank-sound-neuron/Sonification_Instrumentale.mp3",
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Miu.mp3",
-  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Percussion.mp3",
-
+  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Percussion.mp3"
 ];
 const audio=new Audio();
 document.getElementById("playBtn").addEventListener("click",()=>{
