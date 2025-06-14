@@ -24,6 +24,7 @@ body{
   background:var(--bg);
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
+  scroll-behavior:smooth;
 }
 
 /* ---------- HERO ---------- */
@@ -107,20 +108,24 @@ body{
   line-height:1.7;
 }
 
-/* ---------- RASTER IMAGE ---------- */
-.neuron-raster{
+/* ---------- RASTER IMAGE GALLERY ---------- */
+.neuron-gallery{
   grid-column:1/-1; /* full width strip */
-  display:flex;
-  justify-content:center;
+  display:grid;
+  gap:1.8rem;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  place-items:center;
 }
-.neuron-raster img{
+.neuron-gallery img{
   width:100%;
-  max-width:950px;
+  max-width:600px;
   height:auto;
   border-radius:8px;
   box-shadow:0 6px 20px rgba(0,0,0,0.10);
-  filter:grayscale(1); /* enforce B&W */
+  filter:grayscale(1);
+  transition:transform .4s ease;
 }
+.neuron-gallery img:hover{transform:scale(1.03)}
 
 /* ---------- CREDITS ---------- */
 .credits{
@@ -186,9 +191,10 @@ body{
     <p>脳は約1,000億個のニューロンで構成され、イオン電流で情報を伝達します。各行がニューロン、各ダッシュがスパイクを示すラスター表示は、「側坐核」の活動を記録したものです。ここには体験された感情の断片が刻まれています。</p>
   </div>
 
-  <!-- FULL-WIDTH NEURON RASTER IMAGE -->
-  <figure class="neuron-raster">
-     <img src="NeuronRaster.jpg" alt="Raster plot of neuronal spikes" />
+  <!-- RASTER IMAGE GALLERY -->
+  <figure class="neuron-gallery">
+     <img src="Raster1.jpg" alt="Raster plot of neuronal spikes – sample 1" />
+     <img src="Raster2.jpg" alt="Raster plot of neuronal spikes – sample 2" />
   </figure>
 </section>
 
@@ -224,7 +230,8 @@ const sounds=[
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Percussion.mp3"
 ];
 const audio=new Audio();
-document.getElementById("playBtn").addEventListener("click",()=>{
+const btn=document.getElementById("playBtn");
+btn.addEventListener("click",()=>{
   if(!audio.paused){audio.pause();audio.currentTime=0;}
   const i=Math.floor(Math.random()*sounds.length);
   audio.src=sounds[i];
