@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Soundscape of the Brain</title>
 
 <!-- Google Fonts -->
@@ -26,7 +26,6 @@ body{
   -webkit-font-smoothing:antialiased;
   scroll-behavior:smooth;
 }
-
 /* ---------- HERO ---------- */
 .hero{
   position:relative;
@@ -42,11 +41,11 @@ body{
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
     url("hero-bg.jpg") center/cover no-repeat;
   background-attachment:fixed;
-  filter:grayscale(1); /* force B&W */
+  filter:grayscale(1);
 }
 .hero::after{
   content:"";
-  position:absolute;inset:0;
+  position:absolute; inset:0;
   background-image:
     repeating-linear-gradient(0deg ,transparent 0 18px,var(--grid) 18px 19px),
     repeating-linear-gradient(90deg,transparent 0  6px,var(--grid) 6px  7px);
@@ -62,7 +61,6 @@ body{
   z-index:1;
   text-shadow:0 2px 4px rgba(0,0,0,.25);
 }
-
 /* ---------- BUTTON ---------- */
 .play-btn{
   margin-top:2.8rem;
@@ -79,7 +77,6 @@ body{
 }
 .play-btn:hover{background:var(--accent)}
 .play-btn:active{transform:scale(.97)}
-
 /* ---------- CONTENT ---------- */
 .section{
   max-width:1250px;
@@ -91,7 +88,7 @@ body{
 @media(min-width:900px){
   .section{grid-template-columns:1fr 1fr}
 }
-.block{display:flex;flex-direction:column;gap:1rem}
+.block{display:flex; flex-direction:column; gap:1rem}
 .block h2{
   font-family:"Playfair Display",serif;
   font-size:clamp(1.8rem,4.5vw,2.4rem);
@@ -100,13 +97,7 @@ body{
   letter-spacing:.03em;
 }
 .block p{max-width:60ch}
-.jp{
-  opacity:.9;
-  transform:translateX(4px);
-  font-size:.95rem;
-  line-height:1.7;
-}
-
+.jp{opacity:.9; transform:translateX(4px); font-size:.95rem; line-height:1.7;}
 /* ---------- RASTER IMAGE GALLERY ---------- */
 .neuron-gallery{
   grid-column:1/-1;
@@ -125,7 +116,9 @@ body{
   transition:transform .4s ease;
 }
 .neuron-gallery img:hover{transform:scale(1.03)}
-
+.neuron-gallery img[src*="Raster2"]{ /* lighten Raster2 specifically */
+  filter:grayscale(1) brightness(1.35);
+}
 /* ---------- CREDITS ---------- */
 .credits{
   background:var(--fg);
@@ -139,36 +132,26 @@ body{
   font-weight:900;
   margin-bottom:.3rem;
 }
-.credits .jp-name{
-  font-size:1.1rem;
-  letter-spacing:.1em;
-  margin-bottom:.8rem;
-}
-.credits p{margin-bottom:1.6rem;font-size:1rem}
-.credits .divider{
-  width:120px;height:2px;background:var(--bg);margin:2rem auto;
-}
-.credits .contact{font-size:1.15rem;font-weight:600;letter-spacing:.04em}
-
+.credits .jp-name{font-size:1.1rem; letter-spacing:.1em; margin-bottom:.8rem;}
+.credits p{margin-bottom:1.6rem; font-size:1rem}
+.credits .divider{width:120px; height:2px; background:var(--bg); margin:2rem auto;}
+.credits .contact{font-size:1.15rem; font-weight:600; letter-spacing:.04em}
 /* ---------- DARK MODE ---------- */
 @media(prefers-color-scheme:dark){
-  :root{--bg:#111;--fg:#f4f4f0;--grid:#222;--accent:#888}
+  :root{--bg:#111; --fg:#f4f4f0; --grid:#222; --accent:#888}
   .hero::after{opacity:.22}
-  .credits{background:var(--fg);color:#111}
+  .credits{background:var(--fg); color:#111}
   .credits .divider{background:#111}
   .play-btn:hover{background:var(--accent)}
 }
 </style>
 </head>
-
 <body>
-
 <!-- HERO -->
 <section class="hero">
   <h1>Soundscape&nbsp;of&nbsp;the&nbsp;Brain</h1>
   <button class="play-btn" id="playBtn">Play / Re‑shuffle</button>
 </section>
-
 <!-- MAIN CONTENT -->
 <section class="section">
   <div class="block">
@@ -180,7 +163,6 @@ body{
     <h2>芸術的意図</h2>
     <p>この作品は深い内面性を映すデータを触れることのできる不変の媒体に刻み込みます。鑑賞者は提示されたデータにランダムに音を割り当て、感情の楽譜に生命を吹き込みます。ボタンを押すごとに一瞬のメロディが生まれ、リズム構造のみが恒常的に現在へ感情を刻み込みます。</p>
   </div>
-
   <div class="block">
     <h2>SCIENTIFIC&nbsp;ASPECT</h2>
     <p>The brain hosts ~100 billion neurons that communicate via ionic currents—an encoded language scientists are still deciphering. Shown here as a binary‑like raster, each row is a neuron, each dash a spike. The excerpt originates from the reward‑related nucleus accumbens, capturing a fragment of lived emotion.</p>
@@ -189,36 +171,28 @@ body{
     <h2>科学的な側面</h2>
     <p>脳は約1,000億個のニューロンで構成され、イオン電流で情報を伝達します。各行がニューロン、各ダッシュがスパイクを示すラスター表示は、「側坐核」の活動を記録したものです。ここには体験された感情の断片が刻まれています。</p>
   </div>
-
   <!-- RASTER IMAGE GALLERY -->
   <figure class="neuron-gallery">
-     <!-- Vérifie que les noms et l’emplacement correspondent exactement à ceux sur GitHub Pages -->
-     <img src="Raster1.png" alt="Raster plot of neuronal spikes – sample 1" />
+     <img src="Raster1.JPG" alt="Raster plot of neuronal spikes – sample 1" />
      <img src="Raster2.png" alt="Raster plot of neuronal spikes – sample 2" />
   </figure>
 </section>
-
 <!-- CREDITS -->
 <section class="credits">
   <h3>Mehdi Sicre</h3>
   <div class="jp-name">メディ シクレ</div>
   <p>Neuroscientist,<br>RIKEN Center for Brain Science</p>
   <p class="jp">神経生物学者<br>理化学研究所 脳科学研究センター</p>
-
   <div class="divider"></div>
-
   <h3>Hiroshi Itami</h3>
-  <div class="jp-name">伊丹&nbsp;裕</div>
+  <div class="jp-name">伊丹 裕</div>
   <p>Fine art printer</p>
   <p class="jp">アート印刷技師</p>
-
   <div class="divider"></div>
-
-  <div class="contact">Contact • sicremehdi@gmail.com</div>
+  <div class="contact">Contact • sicremehdi@gmail.com</div>
 </section>
-
+<!-- AUDIO SCRIPT -->
 <script>
-// ------------- AUDIO -------------
 const sounds=[
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_InstrumentsAccordN04.mp3",
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3",
@@ -230,14 +204,12 @@ const sounds=[
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Percussion.mp3"
 ];
 const audio=new Audio();
-const btn=document.getElementById("playBtn");
-btn.addEventListener("click",()=>{
+document.getElementById("playBtn").addEventListener("click",()=>{
   if(!audio.paused){audio.pause();audio.currentTime=0;}
   const i=Math.floor(Math.random()*sounds.length);
   audio.src=sounds[i];
   audio.play();
 });
 </script>
-
 </body>
 </html>
