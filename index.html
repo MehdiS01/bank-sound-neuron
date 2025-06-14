@@ -193,8 +193,9 @@ body{
 
   <!-- RASTER IMAGE GALLERY -->
   <figure class="neuron-gallery">
-     <img src="Raster1.jpg" alt="Raster plot of neuronal spikes – sample 1" />
-     <img src="Raster2.jpg" alt="Raster plot of neuronal spikes – sample 2" />
+     <!-- Ensure the filenames & case exactly match the files committed to GitHub -->
+     <img src="Raster1.JPG" alt="Raster plot of neuronal spikes – sample 1" />
+     <img src="Raster2.JPG" alt="Raster plot of neuronal spikes – sample 2" />
   </figure>
 </section>
 
@@ -224,20 +225,4 @@ const sounds=[
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3",
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N02.mp3",
   "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N03Whispers.mp3",
-  "https://mehdis01.github.io/bank-sound-neuron/Sonif_VentsDouceur.mp3",
-  "https://mehdis01.github.io/bank-sound-neuron/Sonification_Instrumentale.mp3",
-  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Miu.mp3",
-  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Percussion.mp3"
-];
-const audio=new Audio();
-const btn=document.getElementById("playBtn");
-btn.addEventListener("click",()=>{
-  if(!audio.paused){audio.pause();audio.currentTime=0;}
-  const i=Math.floor(Math.random()*sounds.length);
-  audio.src=sounds[i];
-  audio.play();
-});
-</script>
-
-</body>
-</html>
+  "https://mehdis01.github.io
