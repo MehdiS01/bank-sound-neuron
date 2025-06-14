@@ -44,7 +44,6 @@ body{
   background-attachment:fixed;
   filter:grayscale(1); /* force B&W */
 }
-/* subtle raster motif */
 .hero::after{
   content:"";
   position:absolute;inset:0;
@@ -110,7 +109,7 @@ body{
 
 /* ---------- RASTER IMAGE GALLERY ---------- */
 .neuron-gallery{
-  grid-column:1/-1; /* full width strip */
+  grid-column:1/-1;
   display:grid;
   gap:1.8rem;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -167,7 +166,7 @@ body{
 <!-- HERO -->
 <section class="hero">
   <h1>Soundscape&nbsp;of&nbsp;the&nbsp;Brain</h1>
-  <button class="play-btn" id="playBtn">Play / Re-shuffle</button>
+  <button class="play-btn" id="playBtn">Play / Re‑shuffle</button>
 </section>
 
 <!-- MAIN CONTENT -->
@@ -184,7 +183,7 @@ body{
 
   <div class="block">
     <h2>SCIENTIFIC&nbsp;ASPECT</h2>
-    <p>The brain hosts ~100 billion neurons that communicate via ionic currents—an encoded language scientists are still deciphering. Shown here as a binary-like raster, each row is a neuron, each dash a spike. The excerpt originates from the reward-related nucleus accumbens, capturing a fragment of lived emotion.</p>
+    <p>The brain hosts ~100 billion neurons that communicate via ionic currents—an encoded language scientists are still deciphering. Shown here as a binary‑like raster, each row is a neuron, each dash a spike. The excerpt originates from the reward‑related nucleus accumbens, capturing a fragment of lived emotion.</p>
   </div>
   <div class="block jp">
     <h2>科学的な側面</h2>
@@ -193,6 +192,7 @@ body{
 
   <!-- RASTER IMAGE GALLERY -->
   <figure class="neuron-gallery">
+     <!-- Vérifie que les noms et l’emplacement correspondent exactement à ceux sur GitHub Pages -->
      <img src="Raster1.JPG" alt="Raster plot of neuronal spikes – sample 1" />
      <img src="Raster2.JPG" alt="Raster plot of neuronal spikes – sample 2" />
   </figure>
@@ -201,4 +201,43 @@ body{
 <!-- CREDITS -->
 <section class="credits">
   <h3>Mehdi Sicre</h3>
-  <div class
+  <div class="jp-name">メディ シクレ</div>
+  <p>Neuroscientist,<br>RIKEN Center for Brain Science</p>
+  <p class="jp">神経生物学者<br>理化学研究所 脳科学研究センター</p>
+
+  <div class="divider"></div>
+
+  <h3>Hiroshi Itami</h3>
+  <div class="jp-name">伊丹&nbsp;裕</div>
+  <p>Fine art printer</p>
+  <p class="jp">アート印刷技師</p>
+
+  <div class="divider"></div>
+
+  <div class="contact">Contact • sicremehdi@gmail.com</div>
+</section>
+
+<script>
+// ------------- AUDIO -------------
+const sounds=[
+  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_InstrumentsAccordN04.mp3",
+  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N01.mp3",
+  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N02.mp3",
+  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_N03Whispers.mp3",
+  "https://mehdis01.github.io/bank-sound-neuron/Sonif_VentsDouceur.mp3",
+  "https://mehdis01.github.io/bank-sound-neuron/Sonification_Instrumentale.mp3",
+  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Miu.mp3",
+  "https://mehdis01.github.io/bank-sound-neuron/Neuronal_Sonification_Percussion.mp3"
+];
+const audio=new Audio();
+const btn=document.getElementById("playBtn");
+btn.addEventListener("click",()=>{
+  if(!audio.paused){audio.pause();audio.currentTime=0;}
+  const i=Math.floor(Math.random()*sounds.length);
+  audio.src=sounds[i];
+  audio.play();
+});
+</script>
+
+</body>
+</html>
